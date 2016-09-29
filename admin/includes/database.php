@@ -18,6 +18,23 @@ class Database {
     }
 
   }
+
+  public function query($sql) {
+    $result = mysqli_query($this->connection, $sql);
+    // $this->confirm_query($result);
+
+    return $result;
+  }
+
+  private function confirm_query($result) {
+    if (!$result) {
+      die('Query failed!');
+    }
+  }
+
+  public function escape_string($string) {
+    return mysqli_real_escape_string($this->connection, $string);
+  }
 }
 
 $database = new Database();
