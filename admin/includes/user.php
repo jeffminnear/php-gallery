@@ -24,7 +24,31 @@
       global $database;
 
       $result_set = $database->query($sql);
-      return $result_set;
+      $obj_array = array();
+
+      while ($row = mysqli_fetch_array($result_set)) {
+        $obj_array[] = self::instantiate($row);
+      }
+
+      return $obj_array;
+    }
+
+    private static function instantiate($record) {
+      $user_obj = new self;
+
+      foreach ($record as $prop => $val) {
+        if ($user_obj->has_property($prop)) {
+          $user_obj->prop = $val;
+        }
+      }
+
+      return $user_obj;
+    }
+
+    private function has_property($prop) {
+      $props = get_object_vars($this);
+
+      return array_key_exists($prop, $props);
     }
 
   }
