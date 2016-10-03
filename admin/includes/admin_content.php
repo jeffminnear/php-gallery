@@ -12,11 +12,21 @@
             <!-- TODO remove it -->
             <?php
 
-                $sql = 'SELECT * FROM users WHERE id=1';
-                $result = $database->query($sql);
-                $user_found = mysqli_fetch_array($result);
+                echo '<h4>All users:</h4>';
+                $result_set = User::find_all_users();
 
-                echo $user_found['username'] . '\'s real name is ' . $user_found['first_name'] . ' ' . $user_found['last_name'];
+                while ($row = mysqli_fetch_array($result_set)) {
+                    echo $row['username'] . '<br>';
+                }
+
+                echo '<br><h4>User 3</h4>';
+                $result = User::find_user_by_id(3);
+
+                while ($row = mysqli_fetch_array($result)) {
+                    echo '<strong>username: </strong>' . $row['username'] . '<br>';
+                    echo '<strong>first_name: </strong>' . $row['first_name'] . '<br>';
+                    echo '<strong>last_name: </strong>' . $row['last_name'] . '<br>';
+                }
 
             ?>
 
