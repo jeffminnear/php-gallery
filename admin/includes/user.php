@@ -8,6 +8,13 @@
       return $result_set;
     }
 
+    public static function find_user_by_id($id) {
+      global $database;
+
+      $result = $database->query('SELECT * FROM users WHERE id=' . $id);
+      return $result;
+    }
+
   }
 
 ?>
