@@ -20,13 +20,12 @@
                 }
 
                 echo '<br><h4>User 3</h4>';
-                $result = User::find_user_by_id(3);
+                $user = User::find_user_by_id(3);
 
-                while ($row = mysqli_fetch_array($result)) {
-                    echo '<strong>username: </strong>' . $row['username'] . '<br>';
-                    echo '<strong>first_name: </strong>' . $row['first_name'] . '<br>';
-                    echo '<strong>last_name: </strong>' . $row['last_name'] . '<br>';
-                }
+                echo '<strong>username: </strong>' . $user['username'] . '<br>';
+                echo '<strong>first_name: </strong>' . $user['first_name'] . '<br>';
+                echo '<strong>last_name: </strong>' . $user['last_name'] . '<br>';
+
 
             ?>
 
