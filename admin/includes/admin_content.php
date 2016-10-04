@@ -12,19 +12,19 @@
             <!-- TODO remove it -->
             <?php
 
-                echo '<h4>All users:</h4>';
-                $result_set = User::find_all_users();
+                echo "<h4>All users:</h4>";
+                $users = User::find_all_users();
 
-                while ($row = mysqli_fetch_array($result_set)) {
-                    echo $row['username'] . '<br>';
+                foreach ($users as $user) {
+                    echo $user->username . "<br>";
                 }
 
-                echo '<br><h4>User 3</h4>';
                 $user = User::find_user_by_id(3);
+                echo "<br><h4>User $user->id</h4>";
 
-                echo '<strong>username: </strong>' . $user['username'] . '<br>';
-                echo '<strong>first_name: </strong>' . $user['first_name'] . '<br>';
-                echo '<strong>last_name: </strong>' . $user['last_name'] . '<br>';
+                echo "<strong>username: </strong>$user->username<br>";
+                echo "<strong>first_name: </strong>$user->first_name<br>";
+                echo "<strong>last_name: </strong>$user->last_name<br>";
 
 
             ?>

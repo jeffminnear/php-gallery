@@ -8,16 +8,16 @@
     public $first_name;
     public $last_name;
 
-    // returns all users as a mysqli_result object
+    // returns all users as an object array
     public static function find_all_users() {
       return self::find_this_query("SELECT * FROM users");
     }
 
-    // finds a single user by id and returns it as an array
+    // finds a single user by id and returns it as an object array
     public static function find_user_by_id($id) {
-      $result = self::find_this_query("SELECT * FROM users WHERE id=$id LIMIT 1");
-      $user = mysqli_fetch_array($result);
-      return $user;
+      $result_array = self::find_this_query("SELECT * FROM users WHERE id=$id LIMIT 1");
+
+      return !empty($result_array) ? array_shift($result_array) : false;
     }
 
     public static function find_this_query($sql) {
@@ -38,7 +38,7 @@
 
       foreach ($record as $prop => $val) {
         if ($user_obj->has_property($prop)) {
-          $user_obj->prop = $val;
+          $user_obj->$prop = $val;
         }
       }
 
