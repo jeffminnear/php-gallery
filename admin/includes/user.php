@@ -13,13 +13,14 @@
       return self::find_this_query("SELECT * FROM users");
     }
 
-    // finds a single user by id and returns it as an object array
+    // finds a single user by id and returns either an object array or false
     public static function find_user_by_id($id) {
       $result_array = self::find_this_query("SELECT * FROM users WHERE id=$id LIMIT 1");
 
       return !empty($result_array) ? array_shift($result_array) : false;
     }
 
+    // takes a SQL query and returns an object array of the results
     public static function find_this_query($sql) {
       global $database;
 
@@ -31,6 +32,20 @@
       }
 
       return $obj_array;
+    }
+
+    // finds a single user by username and password and returns either an object array or false
+    public static function verify_user($username, $password) {
+      global $database;
+
+      // sanitize arguments
+      $username = $database->escape_string($username);
+      $password = $database->escape_string($password);
+
+      $sql = "SELECT * FROM users WHERE username=$username AND password=$password LIMIT 1";
+      $result_array = self::find_this_query($sql);
+
+      return !empty($result_array) ? array_shift($result_array) : false;
     }
 
     private static function instantiate($record) {
