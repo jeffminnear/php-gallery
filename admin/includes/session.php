@@ -24,6 +24,7 @@
       unset($_SESSION['user_id']);
       unset($this->user_id);
       $this->signed_in = false;
+      $this->message("You were successfully logged out");
     }
 
     private function check_login() {
@@ -34,6 +35,22 @@
         unset($this->user_id);
         $this->signed_in = false;
       }
+    }
+
+    public function message($msg="") {
+      if (!empty($msg)) {
+        $_SESSION['message'] = $msg;
+      } else {
+        if (isset($_SESSION['message'])) {
+          return $_SESSION['message'];
+        } else {
+          return "";
+        }
+      }
+    }
+
+    public function clear_message() {
+      unset($_SESSION['message']);
     }
   }
 

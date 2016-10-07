@@ -16,4 +16,12 @@
     header("Location: {$location}");
   }
 
+  function show_success($msg) {
+    echo "<h4 class=\"alert alert-success\">$msg</h4>";
+  }
+
+  function show_error($msg) {
+    echo "<h4 class=\"alert alert-danger\">$msg</h4>";
+  }
+
 ?>

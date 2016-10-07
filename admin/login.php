@@ -2,6 +2,9 @@
 
 <?php
 
+  $message = $session->message();
+  $error = false;
+
   if ($session->is_signed_in()) {
     redirect("index.php");
   }
@@ -17,6 +20,7 @@
       redirect("index.php");
     } else {
       $message = "Invalid username/password combination!";
+      $error = true;
     }
   } else {
     $username = "";
@@ -27,7 +31,14 @@
 
 <div class="col-md-4 col-md-offset-4">
 
-<h4 class="bg-danger"><?php if (isset($message)) echo $message; ?></h4>
+<?php
+
+  if (!empty($message)) {
+    $error ? show_error($message) : show_success($message);
+    $session->clear_message();
+  }
+
+?>
 
 <form id="login-id" action="" method="post">
 
