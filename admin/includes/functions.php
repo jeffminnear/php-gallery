@@ -24,4 +24,12 @@
     echo "<h4 class=\"alert alert-danger\">$msg</h4>";
   }
 
+  function show_warning($msg) {
+    echo "<h4 class=\"alert alert-warning\">$msg</h4>";
+  }
+
+  function show_info($msg) {
+    echo "<h4 class=\"alert alert-info\">$msg</h4>";
+  }
+
 ?>

@@ -1,5 +1,12 @@
 <?php include("includes/header.php"); ?>
 
+<?php
+
+  $message = $session->message();
+  $error = false;
+
+?>
+
 <!-- redirect unauthorized users to the login page -->
 <?php if (!$session->is_signed_in()) redirect("login.php"); ?>
 
@@ -17,6 +24,15 @@
         </nav>
 
         <div id="page-wrapper">
+
+            <?php
+
+              if (!empty($message)) {
+                show_success($message);
+                $session->clear_message();
+              }
+
+            ?>
 
             <?php include("includes/admin_content.php"); ?>
 
