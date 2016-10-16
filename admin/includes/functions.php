@@ -12,6 +12,13 @@
 
   spl_autoload_register("classAutoLoad");
 
+  function set_object_vars($object, $vars) {
+    $props = get_object_vars($object);
+    foreach ($props as $key => $value) {
+      $object->$key = isset($vars[$key]) ? $vars[$key] : NULL;
+    }
+  }
+
   function redirect($location) {
     header("Location: {$location}");
   }
