@@ -41,6 +41,7 @@
   ?>
 
   <form id="login-id" action="" method="post">
+
     <div class="form-group">
     	<label for="username">Username</label>
     	<input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>" >
@@ -55,9 +56,11 @@
     <div class="form-group">
       <input type="submit" name="submit" value="Sign In" class="btn btn-primary">
     </div>
+    
   </form>
 
   <form id="signup" action="signup.php">
     <input type="submit" value="Sign Up" class="btn btn-info">
   </form>
+
 </div>
