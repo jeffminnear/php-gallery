@@ -18,7 +18,7 @@ class Database {
     $this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
     if ($this->connection->connect_errno) {
-      die('Database connection failed badly: ' . $this->connection->connect_errno);
+      die('Database connection failed: ' . $this->connection->connect_errno);
     }
 
   }
