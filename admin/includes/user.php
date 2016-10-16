@@ -85,6 +85,6 @@
       }
     }
 
-  }
+  } // end of User Class
 
 ?>

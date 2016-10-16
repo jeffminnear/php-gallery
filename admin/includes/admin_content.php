@@ -12,19 +12,21 @@
             <!-- TODO remove it -->
             <?php
 
-                echo "<h4>All users:</h4>";
-                $users = User::find_all_users();
+                $sql = "SELECT * FROM users WHERE username='jeff'";
+                $user = array_shift(User::find_this_query($sql));
 
-                foreach ($users as $user) {
-                    echo $user->username . "<br>";
-                }
-
-                $user = User::find_user_by_id(3);
-                echo "<br><h4>User $user->id</h4>";
-
-                echo "<strong>username: </strong>$user->username<br>";
-                echo "<strong>first_name: </strong>$user->first_name<br>";
-                echo "<strong>last_name: </strong>$user->last_name<br>";
+                echo "<h2>Hello, {$user->first_name} {$user->last_name}!</h2>";
+                // $user = new User();
+                // $user->username = "jeff";
+                // $user->password = "hello";
+                // $user->first_name = "Jeff";
+                // $user->last_name = "Minnear";
+                //
+                // if ($user->create()) {
+                //     show_success("User {$user->username} created successfully!");
+                // } else {
+                //     show_error("Failed to create User!");
+                // }
 
 
             ?>
