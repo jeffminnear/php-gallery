@@ -31,34 +31,33 @@
 
 <div class="col-md-4 col-md-offset-4">
 
-<?php
+  <?php
 
-  if (!empty($message)) {
-    $error ? show_error($message) : show_success($message);
-    $session->clear_message();
-  }
+    if (!empty($message)) {
+      $error ? show_error($message) : show_success($message);
+      $session->clear_message();
+    }
 
-?>
+  ?>
 
-<form id="login-id" action="" method="post">
+  <form id="login-id" action="" method="post">
+    <div class="form-group">
+    	<label for="username">Username</label>
+    	<input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>" >
+    </div>
 
-<div class="form-group">
-	<label for="username">Username</label>
-	<input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>" >
-</div>
-
-<div class="form-group">
-	<label for="password">Password</label>
-	<input type="password" class="form-control" name="password" value="<?php echo htmlentities($password); ?>">
-</div>
-
-
-<div class="form-group">
-  <input type="submit" name="submit" value="Submit" class="btn btn-primary">
-</div>
+    <div class="form-group">
+    	<label for="password">Password</label>
+    	<input type="password" class="form-control" name="password" value="<?php echo htmlentities($password); ?>">
+    </div>
 
 
-</form>
+    <div class="form-group">
+      <input type="submit" name="submit" value="Sign In" class="btn btn-primary">
+    </div>
+  </form>
 
-
+  <form id="signup" action="signup.php">
+    <input type="submit" value="Sign Up" class="btn btn-info">
+  </form>
 </div>
