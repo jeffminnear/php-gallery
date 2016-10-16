@@ -4,6 +4,7 @@
 
   $message = $session->message();
   $error = false;
+  $form_error = false;
 
   if ($session->is_signed_in()) {
     redirect("index.php");
@@ -16,7 +17,33 @@
     $first_name = trim($_POST['first_name']);
     $last_name = trim($_POST['last_name']);
 
-    if ($password == $verify_password) {
+    $message = "";
+
+    if (empty($username)) {
+       $form_error = true;
+       $message .="'Username' ";
+     }
+    if (empty($password)) {
+       $form_error = true;
+       $message .="'Password' ";
+     }
+    if (empty($first_name)) {
+       $form_error = true;
+       $message .="'First Name' ";
+     }
+    if (empty($last_name)) {
+       $form_error = true;
+       $message .="'Last Name' ";
+     }
+
+    if ($form_error) {
+      $message .= "field(s) missing!";
+      $error = true;
+    } else if ($password != $verify_password) {
+      $message = "Passwords do not match!";
+      $verify_password = "";
+      $error = true;
+    } else { // all data is valid
       $user = new User();
       set_object_vars($user, $_POST);
 
@@ -28,18 +55,10 @@
         $message = "There was a problem creating the user!";
         $error = true;
       }
-    } else {
-      $message = "Passwords do not match!";
-      $verify_password = "";
-      $error = true;
     }
 
   } else {
-    $username = "";
-    $password = "";
-    $verify_password = "";
-    $first_name = "";
-    $last_name = "";
+    $username = $password = $verify_password = $first_name = $last_name = "";
   }
 
 ?>
@@ -85,7 +104,7 @@
     <div class="form-group">
       <input type="submit" name="submit" value="Submit" class="btn btn-primary">
     </div>
-    
+
   </form>
 
 </div>
